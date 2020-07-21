@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.ShopMapper">
+    <select id="queryShopPage" resultType="com.demo.entity.Shop">
+        select
+           s.shop_id,
+           s.shop_name,
+           s.shop_time,
+           s.pic_url,
+           s.type_id,
+           t.type_name
+        from
+           shop0702 s
+        left join
+            type0702 t
+          on s.type_id = t.type_id
+        where
+          s.entity_id = 1
+          <if test="@tpl.Ognl@isNotEmpty(shop.typeId)">
+            and s.type_id = #{shop.typeId}
+          </if>
+    </select>
+</mapper>
