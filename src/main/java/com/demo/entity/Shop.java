@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @Author: Sfy
@@ -44,6 +45,5 @@ public class Shop {
      */
     @TableField("type_id")
     private Integer typeId;
-
 
 }

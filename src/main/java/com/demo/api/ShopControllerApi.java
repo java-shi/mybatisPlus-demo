@@ -20,4 +20,7 @@ public interface ShopControllerApi {
 
     @ApiOperation(value = "修改商品")
     public Integer updateOneShop(Shop shop);
+
+    @ApiOperation(value = "商品分页")
+    public List queryShopPage(Shop shop);
 }

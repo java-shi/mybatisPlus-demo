@@ -36,7 +36,12 @@ public class ShopController implements ShopControllerApi {
     @Override
     @RequestMapping(method = RequestMethod.POST,path = "/updateOneShop")
     public Integer updateOneShop(@RequestBody Shop shop) {
-
         return shopService.updateOneShop(shop);
+    }
+
+    @Override
+    @RequestMapping(method = RequestMethod.POST,path = "/queryShopPage")
+    public List queryShopPage(@RequestBody Shop shop) {
+        return shopService.queryShopPage(shop);
     }
 }

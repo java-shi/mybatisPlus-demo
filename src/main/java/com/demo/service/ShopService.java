@@ -15,4 +15,8 @@ public interface ShopService extends IService<Shop> {
     Shop getOneShop(Integer shopId);
 
     Integer updateOneShop(Shop shop);
+
+    List queryShopPage(Shop shop);
+
+    int addShop(Shop shop);
 }

@@ -1,6 +1,7 @@
 package com.demo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.demo.entity.Shop;
 import com.demo.mapper.ShopMapper;
@@ -24,6 +25,7 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper,Shop> implements Sho
         UpdateWrapper<Shop> sw = new UpdateWrapper<>();
         sw.lambda().eq(Shop::getEntityId,1);
         List<Shop> shops = shopMapper.selectList(sw);
+        shops.stream().filter(resp -> ObjectUtils.isNotEmpty(resp)).forEach(resp -> resp.setEntityId(0));
         return shops;
     }
 
@@ -43,5 +45,17 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper,Shop> implements Sho
                 .eq(Shop::getShopId,shop.getShopId());
         int update = shopMapper.update(shop, sw);
         return update;
+    }
+
+    @Override
+    public List queryShopPage(Shop shop) {
+        List<Shop> list = shopMapper.queryShopPage(shop);
+        return list;
+    }
+
+    @Override
+    public int addShop(Shop shop) {
+        int i = shopMapper.insert(shop);
+        return i;
     }
 }
